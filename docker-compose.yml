@@ -1,0 +1,19 @@
+services:
+  db:
+    image: mariadb:11
+    container_name: eval-db
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: eval_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8080:80"
+volumes:
+  db_data:
